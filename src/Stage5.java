@@ -27,7 +27,7 @@ The program should not stop until the /exit command is entered.
 
 import java.util.Scanner;
 
-class Stage4 {
+class Stage5 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		while(true) {
@@ -43,9 +43,11 @@ class Stage4 {
                     break;
                 if(s[0].equals("/help")) {
                     System.out.println("The program calculates the sum of numbers");
-                    continue;
+                    
                 }
-                System.out.println("Unknown command");
+                else 
+					System.out.println("Unknown command");
+				continue;
             }
 			int result = 0;
 			boolean error = false;
