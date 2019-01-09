@@ -67,11 +67,7 @@ public class Parser {
                         return Assignment.createError(Strings.ERROR_MSG_Invalid_value);
                     }
                     String varName = assigString.substring(0, pos).trim();
-                    if(!checkVariableName(varName)) {
-                        return Assignment.createError(Strings.ERROR_MSG_Invalid_identifier);
-                    } else {
-                        return new Assignment(new Variable(varName), expression);
-                    }
+                    return new Assignment(new Variable(varName), expression);
                 } else {
                     return Assignment.createError(Strings.ERROR_MSG_Invalid_assignment);
                 }
@@ -144,9 +140,6 @@ public class Parser {
 
     public Variable parseVariable(String text) {
         Variable result = new Variable(text);
-        if (!checkVariableName(text)) {
-            result.setError(Strings.ERROR_MSG_Invalid_identifier);
-        }
         return result;
     }
 
@@ -158,9 +151,5 @@ public class Parser {
             return null;
         }
         return new IntNumber(value);
-    }
-
-    protected boolean checkVariableName(String variableName) {
-        return variableName.matches("[a-zA-Z]+");
     }
 }

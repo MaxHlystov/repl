@@ -1,6 +1,7 @@
 package ru.fmtk.hlystov.repl.stage6.model.expressions.operations;
 
 
+import ru.fmtk.hlystov.repl.stage6.Strings;
 import ru.fmtk.hlystov.repl.stage6.model.expressions.Expression;
 import ru.fmtk.hlystov.repl.stage6.processor.IContext;
 import ru.fmtk.hlystov.repl.stage6.processor.IStringConsumer;
@@ -10,7 +11,12 @@ public class Variable extends Expression {
     private String name;
 
     public Variable(String name) {
-        this.name = name;
+        if(checkVariableName(name)) {
+            this.name = name;
+        }
+        else {
+            setError(Strings.ERROR_MSG_Invalid_identifier);
+        }
     }
 
     public String getName() {
@@ -29,5 +35,12 @@ public class Variable extends Expression {
     @Override
     public String toString() {
         return name;
+    }
+
+    private boolean checkVariableName(String variableName) {
+        if(variableName == null) {
+            return false;
+        }
+        return variableName.matches("[a-zA-Z]+");
     }
 }

@@ -62,7 +62,7 @@ public class Processor {
             } else{
                 Expression foldedExpression = assignment.getExpression().fold(context);
                 if (foldedExpression.hasError()) {
-                    consumer.apply(Strings.ERROR_MSG_Invalid_value);
+                    consumer.apply(foldedExpression.getError());
                 } else if (!context.setVariable(variable.getName(), foldedExpression)) {
                     consumer.apply(Strings.ERROR_MSG_Invalid_assignment);
                 }
